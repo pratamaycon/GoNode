@@ -1,0 +1,7 @@
+{
+  "name": "desafio01",
+  "version": "1.0.0",
+  "description": "desafio 01 nodejs",
+  "main": "index.js",
+  "license": "MIT"
+}
