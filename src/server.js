@@ -1,6 +1,6 @@
-const express = require('express');
-const nunjucks = require('nunjucks');
-const path = require('path');
+import express from 'express';
+import nunjucks from 'nunjucks';
+import path from 'path';
 
 
 class App{
@@ -32,4 +32,4 @@ class App{
     }
 }
 
-module.exports = new App().express;
+export default new App().express;
