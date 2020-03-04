@@ -1,34 +1,32 @@
-
 const express = require('express');
+const nunjucks = require('nunjucks');
 
 const app = express();
 
-/**
- * Pegando parametros através do queryParams
- * Exemplo: http://localhost:3000/?name=Maycon
- */
-
-app.get('/', (req, res)=>{
-    return res.send(`Bem-Vindo, ${req.query.name}`);
+nunjucks.configure('views', {
+    autoescape: true,
+    express: app,
+    watch: true,
 });
 
-/**
- * Pegando parametros vindo da url
- * Exemplo: http://localhost:3000/nome/Maycon
- */
+app.use(express.urlencoded({ extended: false}));
+app.set('view engine', 'njk');
 
-app.get('/nome/:name', (req, res)=>{
-    return res.send(`Bem-Vindo, ${req.params.name}`);
+const Users = ['Maycon Prata', 'Lyssa Melo', 'Viviane Prata'];
+
+
+app.get('/', (req, res) => {
+    res.render('list', { Users })
 });
 
-/**
- * retornando json com o nome vindo da url
- */
+app.get('/new', (req, res) =>{
+    res.render('new');
+});
 
-app.get('/teste/:name2', (req, res)=>{
-    return res.json( {
-        message: `Bem vindo, ${req.params.name2}`
-    });
+app.post('/create', (req, res) =>{
+    Users.push(req.body.user);
+    console.log(req.body);
+    res.redirect("/")
 });
 
 app.listen(3000);

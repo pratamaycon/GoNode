@@ -1,10 +1,17 @@
 {
-  "name": "desafio01",
+  "name": "goNode",
   "version": "1.0.0",
-  "description": "desafio 01 nodejs",
+  "description": "desafio Nodejs",
   "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nunjucks": "^3.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
