@@ -12,21 +12,30 @@ nunjucks.configure('views', {
 app.use(express.urlencoded({ extended: false}));
 app.set('view engine', 'njk');
 
-const Users = ['Maycon Prata', 'Lyssa Melo', 'Viviane Prata'];
+const logMiddleware = (req, res, next) =>{
 
+    const { idade } = req.query;
 
-app.get('/', (req, res) => {
-    res.render('list', { Users })
+    if (!idade) return res.redirect('/');
+
+    return next();
+};
+
+app.get('/', (req, res) =>{
+    res.render('age');
 });
 
-app.get('/new', (req, res) =>{
-    res.render('new');
+app.post('/check', (req, res) => {
+     const url = req.body.idade > 18 ? `/major?idade=${req.body.idade}` : `/minor?idade=${req.body.idade}`
+     return res.redirect(url);
 });
 
-app.post('/create', (req, res) =>{
-    Users.push(req.body.user);
-    console.log(req.body);
-    res.redirect("/")
+app.get('/minor', logMiddleware, (req, res)=>{
+    return res.render('minor', { idade : req.query.idade });
+});
+
+app.get('/major', logMiddleware, (req, res)=>{
+    return res.render('major', { idade : req.query.idade });
 });
 
 app.listen(3000);
