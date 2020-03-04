@@ -4,7 +4,7 @@
   "description": "desafio Nodejs",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon src/index.js"
   },
   "license": "MIT",
   "dependencies": {
