@@ -2,9 +2,9 @@
   "name": "goNode",
   "version": "1.0.0",
   "description": "desafio 2 Node",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/server.js"
   },
   "license": "MIT",
   "dependencies": {
